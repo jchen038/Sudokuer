@@ -1,0 +1,18 @@
+%button.btn.btn-default
+  add_puzzles
+%h2
+  Puzzles
+%table.table
+  %thead
+    %tr
+      %td
+        Puzzle ID
+      %td
+        Puzzle Name
+  %tbody
+    - @puzzles.each do |puzzle|
+      %tr
+        %td
+          = puzzle.id
+        %td
+          =link_to puzzle.name, puzzle
