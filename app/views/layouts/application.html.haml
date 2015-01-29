@@ -7,5 +7,10 @@
   = javascript_include_tag 'application', 'data-turbolinks-track' => true
   = csrf_meta_tags
 %body
-  = yield
+  .site-header
+    .site-title
+      Sudokuer
+
+  .container
+    = yield
 
