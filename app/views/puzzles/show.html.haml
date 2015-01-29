@@ -1,14 +1,15 @@
 .puzzle-name
   = @puzzle.name
+.puzzle-body
 
-%table.table-bordered
-  %tbody
-    - (1..9).each do |row|
-      %tr
-        - puzzle_row = @puzzle.cells.where(row: row)
-        - (1..9).each do |column|
-          %td
-            - puzzle_value = @puzzle.cells.where(row: row, column: column)
-            = puzzle_value.empty? ?  "" : puzzle_value.first.value
-
-
+  %table.table-bordered#puzzle
+    %tbody
+      - (1..9).each do |row|
+        %tr
+          - puzzle_row = @puzzle.cells.where(row: row)
+          - (1..9).each do |column|
+            %td
+              - puzzle_value = @puzzle.cells.where(row: row, column: column)
+              = puzzle_value.empty? ?  "" : puzzle_value.first.value
+  .puzzle-buttons
+    = render partial: "buttons"

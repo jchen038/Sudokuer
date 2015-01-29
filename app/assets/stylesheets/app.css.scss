@@ -12,6 +12,7 @@
   height: 80px;
   margin-bottom: 10px;
 }
+
 .site-title {
   font-size: 40px;
   margin-left: auto;
@@ -20,7 +21,13 @@
   line-height:70px;
 }
 
-.puzzle-name {
-  margin-bottom: 20px;
-  font-size: 40px;
+.site-title a, .site-title a:hover {
+  text-decoration: none;
+  color: black;
 }
+
+a, a:hover {
+  text-decoration: none !important;
+}
+
+
