@@ -7,7 +7,7 @@ class Puzzle < ActiveRecord::Base
     self.cells.create(value: 9, row: 1, column: 6, block: 2)
     self.cells.create(value: 6, row: 1, column: 7, block: 3)
     self.cells.create(value: 5, row: 1, column: 8, block: 3)
-    self.cells.create(value: 4, row: 1, column: 9, block: 3)
+    self.cells.create(value: 3, row: 1, column: 9, block: 3)
     self.cells.create(value: 6, row: 2, column: 1, block: 1)
     self.cells.create(value: 4, row: 2, column: 2, block: 1)
     self.cells.create(value: 2, row: 2, column: 3, block: 1)
