@@ -21,8 +21,8 @@
   background-color: #EBFFEB;
 }
 
-#selected {
-  background-color: #CCFFCC;
+#selected, .Active, .Active:hover {
+  background-color: #CCFFCC !important;
 }
 
 .puzzle-name {
