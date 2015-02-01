@@ -10,10 +10,16 @@ $(document).ready(function(){
     var currentButton = this;
     var currentButtonValue = $(this).text().trim();
     var activeClasses = $.inArray( "base_cell", $(".Active").attr('class').split(/\s+/)) < 0;
-    console.log(activeClasses);
     if (activeClasses) {
       $(".Active").text("");
       $(".Active").text(currentButtonValue);
+    }
+  });
+
+  $("#cancel").click(function() {
+    var activeClasses = $.inArray( "base_cell", $(".Active").attr('class').split(/\s+/)) < 0;
+    if (activeClasses) {
+      $(".Active").text("");
     }
   });
 });
