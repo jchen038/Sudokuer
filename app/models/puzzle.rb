@@ -36,6 +36,5 @@ class Puzzle < ActiveRecord::Base
     self.cells.create(value: 5, row: 9, column: 4, block: 8)
     self.cells.create(value: 8, row: 9, column: 6, block: 8)
     self.cells.create(value: 1, row: 9, column: 8, block: 9)
-
   end
 end
