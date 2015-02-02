@@ -37,4 +37,20 @@ class Puzzle < ActiveRecord::Base
     self.cells.create(value: 8, row: 9, column: 6, block: 8, base_cell: true)
     self.cells.create(value: 1, row: 9, column: 8, block: 9, base_cell: true)
   end
+
+  def solve
+    puzzle = [  {row: [1,2,3], column: [1,2,3]},  # 1
+                {row: [1,2,3], column: [4,5,6]},  # 2
+                {row: [1,2,3], column: [7,8,9]},  # 3
+                {row: [4,5,6], column: [1,2,3]},  # 4
+                {row: [4,5,6], column: [4,5,6]},  # 5
+                {row: [4,5,6], column: [7,8,9]},  # 6
+                {row: [7,8,9], column: [1,2,3]},  # 7
+                {row: [7,8,9], column: [4,5,6]},  # 8
+                {row: [7,8,9], column: [7,8,9]}]  # 9
+    puzzle.each do |p|
+
+    end
+
+  end
 end
