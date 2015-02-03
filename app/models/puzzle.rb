@@ -48,8 +48,16 @@ class Puzzle < ActiveRecord::Base
                {block: 7, row: [7,8,9], column: [1,2,3]},  # 7
                {block: 8, row: [7,8,9], column: [4,5,6]},  # 8
                {block: 9, row: [7,8,9], column: [7,8,9]}]  # 9
-    puzzle.each do |p|
-
+    while self.cells.count < 81
+      puzzle.each do |p|
+        (1..9).each do |value| # values in block
+          rows = (self.cells.where(block: p[:block], value: value, row: p[:row]).map{|r| r.row} + p[:row]).uniq
+          columns = (self.cells.where(block: p[:block], value: value, column p[:column]).map{|r| r.column} + p[:column]).uniq
+          if rows.count == 1 && columns.count == 1 
+            self.cells.create(block: p[:block], value: value, column: columns.first, row:rows.first)
+          end 
+        end
+      end
     end
 
   end
