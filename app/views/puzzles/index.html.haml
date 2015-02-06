@@ -14,7 +14,8 @@
         %td
           = puzzle.id
         %td
-          =link_to puzzle.name, puzzle
-
+          = link_to puzzle.name, puzzle
+        %td
+          = link_to "Delete", puzzle, method: :delete, class: 'btn btn-danger'
 
 

@@ -38,8 +38,7 @@
           Cancel
     %tr
       %td
-        %button.btn-default.btn
-          Solve
+        = link_to "Solve", solve_puzzle_path(id: params[:id]), class: 'btn btn-default'
     %tr
       %td
         %button.btn-default.btn

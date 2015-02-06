@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   root to: 'puzzles#index'
-  resources :puzzles
+  resources :puzzles do
+    member do
+      get 'solve'
+    end
+  end
 
 end
