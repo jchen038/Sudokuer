@@ -39,15 +39,7 @@ class Puzzle < ActiveRecord::Base
   end
 
   def solve
-    puzzle = [ {block: 1, row: [1,2,3], column: [1,2,3]},  # 1
-               {block: 2, row: [1,2,3], column: [4,5,6]},  # 2
-               {block: 3, row: [1,2,3], column: [7,8,9]},  # 3
-               {block: 4, row: [4,5,6], column: [1,2,3]},  # 4
-               {block: 5, row: [4,5,6], column: [4,5,6]},  # 5
-               {block: 6, row: [4,5,6], column: [7,8,9]},  # 6
-               {block: 7, row: [7,8,9], column: [1,2,3]},  # 7
-               {block: 8, row: [7,8,9], column: [4,5,6]},  # 8
-               {block: 9, row: [7,8,9], column: [7,8,9]}]  # 9
+    puzzle = get_puzzle
     while cells.count < 81
       puzzle.each do |p|
         (1..9).each do |value| # values in block
@@ -73,5 +65,19 @@ class Puzzle < ActiveRecord::Base
         end
       end
     end
+  end
+
+protected
+
+  def get_puzzle
+    [ {block: 1, row: [1,2,3], column: [1,2,3]},  # 1
+      {block: 2, row: [1,2,3], column: [4,5,6]},  # 2
+      {block: 3, row: [1,2,3], column: [7,8,9]},  # 3
+      {block: 4, row: [4,5,6], column: [1,2,3]},  # 4
+      {block: 5, row: [4,5,6], column: [4,5,6]},  # 5
+      {block: 6, row: [4,5,6], column: [7,8,9]},  # 6
+      {block: 7, row: [7,8,9], column: [1,2,3]},  # 7
+      {block: 8, row: [7,8,9], column: [4,5,6]},  # 8
+      {block: 9, row: [7,8,9], column: [7,8,9]}]  # 9
   end
 end
