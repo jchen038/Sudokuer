@@ -11,10 +11,10 @@
             - if puzzle_value.nil? || puzzle_value.first.nil?
               %td.button-select
             - elsif puzzle_value.first.base_cell.nil?
-              %td.button-select
+              %td{class: "button-select #{puzzle_value.empty? ?  "" : puzzle_value.first.value}"}
                 = puzzle_value.empty? ?  "" : puzzle_value.first.value
             - else
-              %td.button-select.base_cell
+              %td{class: "button-select #{puzzle_value.empty? ?  "" : puzzle_value.first.value} base-cell"}
                 = puzzle_value.empty? ?  "" : puzzle_value.first.value
   .puzzle-buttons
     = render partial: "buttons"
