@@ -9,12 +9,12 @@
           - (1..9).each do |column|
             - puzzle_value = @puzzle.cells.where(row: row, column: column)
             - if puzzle_value.nil? || puzzle_value.first.nil?
-              %td.button-select
+              %td.button-select.new-cell{id: "#{row}-#{column}"}
             - elsif puzzle_value.first.base_cell.nil?
-              %td{class: "button-select #{puzzle_value.empty? ?  "" : puzzle_value.first.value}"}
+              %td{class: "button-select #{puzzle_value.empty? ?  "" : puzzle_value.first.value} new-cell", id: "#{row}-#{column}"}
                 = puzzle_value.empty? ?  "" : puzzle_value.first.value
             - else
-              %td{class: "button-select #{puzzle_value.empty? ?  "" : puzzle_value.first.value} base-cell"}
+              %td{class: "button-select #{puzzle_value.empty? ?  "" : puzzle_value.first.value} base-cell", id: "#{row}-#{column}"}
                 = puzzle_value.empty? ?  "" : puzzle_value.first.value
   .puzzle-buttons
     = render partial: "buttons"

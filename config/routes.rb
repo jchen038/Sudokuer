@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :puzzles do
     member do
       get 'solve'
+      get 'save'
     end
   end
-
 end

@@ -12,7 +12,6 @@ class PuzzlesController < ApplicationController
 
   def new
     new_puzzle = Puzzle.create(name: "New Puzzle")
-    new_puzzle.add_first
     redirect_to root_path
   end
 
@@ -23,7 +22,33 @@ class PuzzlesController < ApplicationController
   end
 
   def destroy
-    Puzzle.find(params[:id]).destroy
+    puzzle = Puzzle.find(params[:id])
+    puzzle.cells.all.destroy_all
+    puzzle.destroy
     redirect_to root_path
+  end
+
+  def save
+    puzzle = Puzzle.find(params[:id])
+    (1..9).each do |row|
+      (1..9).each do |column|
+        if params["#{row}-#{column}"].to_i == 0
+          cell = puzzle.cells.where(row: row, column: column)
+          if !cell.first.nil?
+            cell.destroy_all if !cell.first.base_cell
+          end
+        else
+          cell = puzzle.cells.where(row: row, column: column)
+          if cell.empty?
+            puzzle.cells.create(row: row, column: column, value: params["#{row}-#{column}"].to_i)
+          else
+            if !cell.first.base_cell
+              cell.first.update(value: params["#{row}-#{column}"].to_i)
+            end
+          end
+        end
+      end
+    end
+    redirect_to puzzle_path(id: params[:id])
   end
 end
