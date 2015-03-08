@@ -36,9 +36,14 @@
       %td
         %button.btn-default.btn#cancel
           Cancel
-    %tr
-      %td
-        = link_to "Solve", solve_puzzle_path(id: params[:id]), class: 'btn btn-default'
-    %tr
-      %td
-        = link_to "Save", save_puzzle_path(id: params[:id]), {id: 'save', class: 'btn btn-default'}
+    - if params[:action] == 'show'
+      %tr
+        %td
+          = link_to "Solve", solve_puzzle_path(id: params[:id]), class: 'btn btn-default'
+      %tr
+        %td
+          = link_to "Save", save_puzzle_path(id: params[:id]), {id: 'save', class: 'btn btn-default'}
+    - elsif params[:action] == 'new'
+      %tr
+        %td
+          = link_to "Create", @puzzle, method: :post, class: 'btn btn-default'

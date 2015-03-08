@@ -8,11 +8,19 @@ class PuzzlesController < ApplicationController
   end
 
   def create
+    puzzle = Puzzle.create(name: params[:name])
+    (1..9).each do |row|
+      (1..9).each do |column|
+        if params["#{row}-#{column}"].to_i != 0
+          puzzle.cells.create(row: row, column: column, value: params["#{row}-#{column}"].to_i, base_cell: true)
+        end
+      end
+    end
+    redirect_to puzzle_path(id: puzzle.id)
   end
 
   def new
-    new_puzzle = Puzzle.create(name: "New Puzzle")
-    redirect_to root_path
+    @puzzle = Puzzle.new
   end
 
   def solve

@@ -46,4 +46,15 @@ $(document).ready(function(){
     });
     window.location.replace(url.replace(/\s+/g, "").slice(0,-1));
   });
+
+  $("#create").click(function(e) {
+    e.preventDefault();
+    var url = $("#create").attr("href") + "?" ;
+    $(".new-cell").each(function(index, value) {
+      var currentSquare = this;
+      url += $(currentSquare).attr("id") + "=" + $(currentSquare).text() + "&" ;
+    });
+    url += "name" + $("#name").text();
+    window.location.replace(url.replace(/\s+/g, ""));
+  });
 });

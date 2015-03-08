@@ -3,7 +3,7 @@ defaults: &default
   encoding: unicode
   host: localhost
   pool: 5
-  username: postgres
+  username: sudokuer
   password:
 
 development:

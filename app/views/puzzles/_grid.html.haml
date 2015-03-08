@@ -1,0 +1,26 @@
+.puzzle-name
+  - if params[:action] == 'new'
+    .form-group
+      = text_field_tag :name, "",{id: "name"}
+  - else
+    = @puzzle.name
+.puzzle-body
+  %table.table-bordered#puzzle
+    %tbody
+      - (1..9).each do |row|
+        %tr
+          - (1..9).each do |column|
+            - if params[:action] == 'new'
+              - puzzle_value = @puzzle.cells.where(row: row, column: column)
+              - if puzzle_value.nil? || puzzle_value.first.nil?
+                %td.button-select.new-cell{id: "#{row}-#{column}"}
+              - elsif puzzle_value.first.base_cell.nil?
+                %td{class: "button-select #{puzzle_value.empty? ?  "" : puzzle_value.first.value} new-cell", id: "#{row}-#{column}"}
+                  = puzzle_value.empty? ?  "" : puzzle_value.first.value
+              - else
+                %td{class: "button-select #{puzzle_value.empty? ?  "" : puzzle_value.first.value} base-cell", id: "#{row}-#{column}"}
+                  = puzzle_value.empty? ?  "" : puzzle_value.first.value
+            - else
+              %td.button-select
+  .puzzle-buttons
+    = render partial: "buttons"
