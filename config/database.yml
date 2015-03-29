@@ -3,8 +3,6 @@ defaults: &default
   encoding: unicode
   host: localhost
   pool: 5
-  username: sudokuer
-  password:
 
 development:
   <<: *default

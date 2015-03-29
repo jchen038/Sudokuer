@@ -10,7 +10,7 @@
       - (1..9).each do |row|
         %tr
           - (1..9).each do |column|
-            - if params[:action] == 'new'
+            - if params[:action] != 'new'
               - puzzle_value = @puzzle.cells.where(row: row, column: column)
               - if puzzle_value.nil? || puzzle_value.first.nil?
                 %td.button-select.new-cell{id: "#{row}-#{column}"}

@@ -42,19 +42,19 @@ $(document).ready(function(){
     var url = $("#save").attr("href") + "?" ;
     $(".new-cell").each(function(index, value) {
       var currentSquare = this;
-      url += $(currentSquare).attr("id") + "=" + $(currentSquare).text() + "&" ;
+      url += $(currentSquare).attr("id") + "=" + $(currentSquare).text() + "&";
     });
     window.location.replace(url.replace(/\s+/g, "").slice(0,-1));
   });
 
   $("#create").click(function(e) {
     e.preventDefault();
-    var url = $("#create").attr("href") + "?" ;
+    var url = "/puzzles?";
     $(".new-cell").each(function(index, value) {
       var currentSquare = this;
-      url += $(currentSquare).attr("id") + "=" + $(currentSquare).text() + "&" ;
+      url += $(currentSquare).attr("id") + "=" + $(currentSquare).text() + "&";
     });
-    url += "name" + $("#name").text();
-    window.location.replace(url.replace(/\s+/g, ""));
+    url += "name=" + $("#name").val();
+    $.post(url.replace(/\s+/g, ""));
   });
 });

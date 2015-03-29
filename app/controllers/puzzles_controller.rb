@@ -11,12 +11,16 @@ class PuzzlesController < ApplicationController
     puzzle = Puzzle.create(name: params[:name])
     (1..9).each do |row|
       (1..9).each do |column|
-        if params["#{row}-#{column}"].to_i != 0
+        if !params["#{row}-#{column}"].empty?
           puzzle.cells.create(row: row, column: column, value: params["#{row}-#{column}"].to_i, base_cell: true)
         end
       end
     end
-    redirect_to puzzle_path(id: puzzle.id)
+    if puzzle
+      redirect_to action: "index"
+    else
+      render action: "new"
+    end
   end
 
   def new
