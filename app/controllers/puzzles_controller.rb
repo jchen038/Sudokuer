@@ -12,7 +12,7 @@ class PuzzlesController < ApplicationController
     (1..9).each do |row|
       (1..9).each do |column|
         if !params["#{row}-#{column}"].empty?
-          puzzle.cells.create(row: row, column: column, value: params["#{row}-#{column}"].to_i, base_cell: true)
+          puzzle.cells.create(row: row, column: column, value: params["#{row}-#{column}"].to_i, block: Cell.get_block(row, column), base_cell: true)
         end
       end
     end
