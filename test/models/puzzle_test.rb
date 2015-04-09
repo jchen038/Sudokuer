@@ -1,7 +1,11 @@
 require 'test_helper'
 
 class PuzzleTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  fixtures :puzzles
+
+  test "Puzzle: Save" do
+    puzzle = Puzzle.new
+    assert_not puzzle.save
+    assert_equal
+  end
 end

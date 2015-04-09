@@ -1,4 +1,5 @@
 class Puzzle < ActiveRecord::Base
+  validates :name, presence: true
   has_many :cells
 
   def add_first
