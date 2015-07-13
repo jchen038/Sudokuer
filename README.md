@@ -1,11 +1,12 @@
-== Sudokuer. A Sudoku Solver
+## Sudokuer. A Sudoku Solver
 
-- Versions
-Ruby 2.0.0 +
+### Versions
+Ruby 2.0.0
+
 Rail 4.2.0
 
 
-- Setup Instructions
+### Setup Instructions
 
 1. git clone repo
 2. bundle install
