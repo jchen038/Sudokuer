@@ -16,4 +16,5 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'spring'
   gem 'factory_bot'
+  gem 'database_cleaner'
 end
