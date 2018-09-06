@@ -14,6 +14,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 group :development, :test do
   gem 'rspec-rails'
+  # gem 'pry'
   gem 'spring'
   gem 'factory_bot'
   gem 'database_cleaner'

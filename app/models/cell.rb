@@ -1,5 +1,5 @@
 class Cell < ActiveRecord::Base
-  validates :value, :row, :column, :block, presence: true
+  validates :row, :column, presence: true
   belongs_to :puzzle
 
   def self.get_block(row, column)

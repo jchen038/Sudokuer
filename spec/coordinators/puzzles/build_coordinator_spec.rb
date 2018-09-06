@@ -11,7 +11,8 @@ RSpec.describe Puzzles::BuildCoordinator do
       it 'returns puzzle with updated cells and all possibility' do
         coordinator.call
         puzzle.reload
-        expect().to
+
+        expect(puzzle.cells.map{|cell| cell.possibles.count}.inject(&:+)).to eq(95)
       end
     end
   end
