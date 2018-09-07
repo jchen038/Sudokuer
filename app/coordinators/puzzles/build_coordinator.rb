@@ -21,55 +21,37 @@ module Puzzles
     end
 
     def build
-      (1..9).to_a.each do |row|
-        (1..2).to_a.each do |column|
+      (1..9).each do |row|
+        (1..9).each do |column|
           cell = find_cells(row, column)
           next if cell.present? && cell.value.present?
-          horr_pos = build_horrizontal(row, column)
-          vert_pos = build_vertical(row, column)
-          bloc_pos = build_block(row, column)
-          possibles = [
-            horr_pos,
-            vert_pos,
-            bloc_pos
-          ].flatten.uniq.compact
+          poss = (1..9).to_a
+          b_at = Cell.get_block(row, column)
+          horrizon = build_horrizontal(row)
+          vertical = build_vertical(column)
+          block = build_block(b_at)
+          exists = (horrizon + vertical + block).uniq
 
           puzzle.cells.create!(
             row: row,
             column: column,
-            possibles: possibles,
-            block: Cell.get_block(row,column)
+            possibles: (poss - exists).sort,
+            block: b_at
           )
         end
       end
     end
 
-    def build_horrizontal(row, column)
-      exits = []
-      (1..9).to_a.each do |c|
-        next if column == c
-        cell = find_cells(row, c)
-        next if cell.nil?
-        exits << cell.value
-      end
-      (1..9).to_a - exits.uniq.compact
+    def build_horrizontal(row)
+      cells.where(row: row).map{|cell| cell.value}
     end
 
-    def build_vertical(row, column)
-      exits = []
-      (1..9).to_a.each do |r|
-        next if row == r
-        cell = find_cells(r, column)
-        next if cell.nil?
-        exits << cell.value
-      end
-      (1..9).to_a - exits.uniq.compact
+    def build_vertical(column)
+      cells.where(column: column).map{|cell| cell.value}
     end
 
-    def build_block(row, column)
-      cell = find_cells(row, column)
-      return [] if cell.blank?
-      (1..9).to_a - cells.where(block: cell.block).map{|cell| cell.value}
+    def build_block(block)
+      cells.where(block: block).map{|cell| cell.value}
     end
   end
 end

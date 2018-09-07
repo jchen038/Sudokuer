@@ -12,7 +12,21 @@ RSpec.describe Puzzles::BuildCoordinator do
         coordinator.call
         puzzle.reload
 
-        expect(puzzle.cells.map{|cell| cell.possibles.count}.inject(&:+)).to eq(95)
+        expect(puzzle.cells.map{|cell| cell.possibles.count}.inject(&:+)).to eq(107)
+      end
+
+      it 'returns cell count' do
+        coordinator.call
+        puzzle.reload
+
+        expect(puzzle.cells.count).to eq(81)
+      end
+
+      it 'returns correct possible for center piece' do
+        coordinator.call
+        puzzle.reload
+
+        expect(puzzle.cells.where(row: 5, column: 5).last.possibles).to match(["6"])
       end
     end
   end
