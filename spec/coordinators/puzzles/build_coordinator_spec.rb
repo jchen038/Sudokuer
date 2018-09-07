@@ -26,7 +26,7 @@ RSpec.describe Puzzles::BuildCoordinator do
         coordinator.call
         puzzle.reload
 
-        expect(puzzle.cells.where(row: 5, column: 5).last.possibles).to match(["6"])
+        expect(puzzle.cells.where(row: 5, column: 5).last.possibles).to match([6])
       end
     end
   end

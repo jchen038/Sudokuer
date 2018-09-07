@@ -20,7 +20,7 @@ module Puzzles
     def clean_up
       cells = puzzle.cells.select{|cell| cell.possibles.count == 1}
       cells.each do |cell|
-        cell.update!(value: cell.possibles.last)
+        cell.update!(value: cell.possibles.last, possibles: [])
       end
     end
   end
