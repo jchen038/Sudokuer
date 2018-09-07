@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_05_053440) do
+ActiveRecord::Schema.define(version: 2018_09_07_022304) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2018_09_05_053440) do
     t.datetime "updated_at", null: false
     t.integer "puzzle_id"
     t.boolean "base_cell"
-    t.text "possibles", default: [], array: true
+    t.integer "possibles", default: [], array: true
   end
 
   create_table "puzzles", force: :cascade do |t|

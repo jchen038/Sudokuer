@@ -3,6 +3,18 @@ class PuzzlesController < ApplicationController
     @puzzles = Puzzle.all
   end
 
+  def build
+    puzzle = Puzzle.find(permitted_params)
+    Puzzles::BuildCoordinator.new(puzzle: puzzle).call
+    redirect_back(fallback_location: root_path)
+  end
+
+  def solve
+    puzzle = Puzzle.find(permitted_params)
+    Puzzles::SolveCoordinator.new(puzzle: puzzle).call
+    redirect_back(fallback_location: root_path)
+  end
+
   def show
     @puzzle = Puzzle.find(params[:id])
   end
@@ -27,12 +39,6 @@ class PuzzlesController < ApplicationController
     @puzzle = Puzzle.new
   end
 
-  def solve
-    puzzle = Puzzle.find(params[:id])
-    puzzle.solve
-    redirect_to puzzle_path(id: params[:id])
-  end
-
   def destroy
     puzzle = Puzzle.find(params[:id])
     puzzle.cells.all.destroy_all
@@ -40,27 +46,9 @@ class PuzzlesController < ApplicationController
     redirect_to root_path
   end
 
-  def save
-    puzzle = Puzzle.find(params[:id])
-    (1..9).each do |row|
-      (1..9).each do |column|
-        if params["#{row}-#{column}"].to_i == 0
-          cell = puzzle.cells.where(row: row, column: column)
-          if !cell.first.nil?
-            cell.destroy_all if !cell.first.base_cell
-          end
-        else
-          cell = puzzle.cells.where(row: row, column: column)
-          if cell.empty?
-            puzzle.cells.create(row: row, column: column, value: params["#{row}-#{column}"].to_i)
-          else
-            if !cell.first.base_cell
-              cell.first.update(value: params["#{row}-#{column}"].to_i)
-            end
-          end
-        end
-      end
-    end
-    redirect_to puzzle_path(id: params[:id])
+  private
+
+  def permitted_params
+    params.required(:id)
   end
 end

@@ -11,15 +11,18 @@
         %tr
           - (1..9).each do |column|
             - if params[:action] != 'new'
-              - puzzle_value = @puzzle.cells.where(row: row, column: column)
-              - if puzzle_value.nil? || puzzle_value.first.nil?
+              - cell = find_cell_in_puzzle(puzzle: @puzzle, row: row, column: column)
+              - if cell.blank?
                 %td.button-select.new-cell{id: "#{row}-#{column}"}
-              - elsif puzzle_value.first.base_cell.nil?
-                %td{class: "button-select #{puzzle_value.empty? ?  "" : puzzle_value.first.value} new-cell", id: "#{row}-#{column}"}
-                  = puzzle_value.empty? ?  "" : puzzle_value.first.value
+              - elsif cell.base_cell
+                %td{class: "button-select #{cell.blank? ?  "" : cell.value} new-cell", id: "#{row}-#{column}"}
+                  = cell.value
               - else
-                %td{class: "button-select #{puzzle_value.empty? ?  "" : puzzle_value.first.value} base-cell", id: "#{row}-#{column}"}
-                  = puzzle_value.empty? ?  "" : puzzle_value.first.value
+                %td{class: "button-select #{cell.blank? ?  "" : cell.value} base-cell", id: "#{row}-#{column}"}
+                  = cell.value
+                  %br
+                  .red
+                    = cell.possibles.join(",")
             - else
               %td.button-select
   .puzzle-buttons

@@ -39,10 +39,10 @@
     - if params[:action] == 'show'
       %tr
         %td
-          = link_to "Solve", solve_puzzle_path(id: params[:id]), class: 'btn btn-default'
+          = button_to 'Build', action: 'build'
       %tr
         %td
-          = link_to "Save", save_puzzle_path(id: params[:id]), {id: 'save', class: 'btn btn-default'}
+          = button_to 'Solve', action: 'solve'
     - elsif params[:action] == 'new'
       %tr
         %td
